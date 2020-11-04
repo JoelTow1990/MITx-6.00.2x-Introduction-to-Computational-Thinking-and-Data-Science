@@ -134,7 +134,8 @@ class Robot(object):
         self.room = room
         self.speed = speed
         self.position = room.getRandomPosition()
-        self.direction = random.randint(0,360)
+        self.direction = random.randint(0,359)
+        self.room.cleanTileAtPosition(self.position)
         
     def getRobotPosition(self):
         """
