@@ -1,0 +1,21 @@
+"""
+Write a function, stdDevOfLengths(L) that takes in a list of strings, L, and outputs the standard deviation of the lengths of the strings. Return float('NaN') if L is empty.
+"""
+
+def stdDevOfLengths(L):
+    """
+    L: a list of strings
+
+    returns: float, the standard deviation of the lengths of the strings,
+      or NaN if L is empty.
+    """
+    denominator = len(L)
+    if denominator == 0:
+        return float('NaN')
+    lengths = [len(i) for i in L]
+    meanLength = sum(lengths)/denominator
+    numerator = 0
+    for item in L:
+        numerator += (len(item) - meanLength)**2
+    var = numerator/denominator
+    return var**0.5
