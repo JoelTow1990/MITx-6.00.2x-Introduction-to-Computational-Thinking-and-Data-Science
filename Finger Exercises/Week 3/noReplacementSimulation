@@ -1,0 +1,33 @@
+"""
+You have a bucket with 3 red balls and 3 green balls. Assume that once you draw a ball out of the bucket, you don't replace it. What is the probability of drawing 3 balls of the 
+same color?
+
+Write a Monte Carlo simulation to solve the above problem. Feel free to write a helper function if you wish.
+"""
+
+def noReplacement():
+    import random
+    res = []
+    bucket = ['R','G','R','G','R','G']
+    while len(bucket) > 3:
+        ints = [i for i in range(len(bucket))]
+        index = random.choice(ints)
+        res.append(bucket.pop(index))
+    return res[0] == res[1] == res[2]
+
+def noReplacementSimulation(numTrials):
+    '''
+    Runs numTrials trials of a Monte Carlo simulation
+    of drawing 3 balls out of a bucket containing
+    3 red and 3 green balls. Balls are not replaced once
+    drawn. Returns the a decimal - the fraction of times 3 
+    balls of the same color were drawn.
+    '''
+    if numTrials == 0:
+        return float('NaN')
+    success = 0
+    for i in range(numTrials):
+        trial = noReplacement()
+        if trial:
+            success += 1
+    return success/numTrials
