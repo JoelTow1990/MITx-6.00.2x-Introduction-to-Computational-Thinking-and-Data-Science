@@ -1,0 +1,39 @@
+"""
+You should start by understanding the population dynamics before introducing any drug.
+
+Fill in the function simulationWithoutDrug(numViruses, maxPop, maxBirthProb, clearProb, numTrials) that instantiates a Patient, simulates changes to the virus population for 300 
+time steps (i.e., 300 calls to update), and plots the average size of the virus population as a function of time; that is, the x-axis should correspond to the number of elapsed 
+time steps, and the y-axis should correspond to the average size of the virus population in the patient. The population at time=0 is the population after the first call to update.
+"""
+
+def simulationWithoutDrug(numViruses, maxPop, maxBirthProb, clearProb,
+                          numTrials):
+    """
+    Run the simulation and plot the graph for problem 3 (no drugs are used,
+    viruses do not have any drug resistance).    
+    For each of numTrials trial, instantiates a patient, runs a simulation
+    for 300 timesteps, and plots the average virus population size as a
+    function of time.
+
+    numViruses: number of SimpleVirus to create for patient (an integer)
+    maxPop: maximum virus population for patient (an integer)
+    maxBirthProb: Maximum reproduction probability (a float between 0-1)        
+    clearProb: Maximum clearance probability (a float between 0-1)
+    numTrials: number of simulation runs to execute (an integer)
+    """
+
+    outcomes = [list() for i in range(300)]
+    averages = []
+    for trial in range(numTrials):
+        viruses = [SimpleVirus(maxBirthProb, clearProb) for i in range(numViruses)]
+        untreated = Patient(viruses, maxPop)
+        for i in range(300):
+            outcomes[i].append(untreated.update())
+    avgs = [sum(i)/len(i) for i in outcomes]
+    import pylab
+    pylab.plot(avgs, label = "SimpleVirus")
+    pylab.title("SimpleVirus simulation")
+    pylab.xlabel("Time Steps")
+    pylab.ylabel("Average Virus Population")
+    pylab.legend(loc = "best")
+    pylab.show()
