@@ -64,6 +64,7 @@ def simulationWithDrug(numViruses, maxPop, maxBirthProb, clearProb, resistances,
                 treated.addPrescription('guttagonol')
     avgTotals = [sum(i)/len(i) for i in totals]
     avgResistants = [sum(i)/len(i) for i in resistants]
+    import pylab
     pylab.plot(avgTotals, label = "Total Virus Population")
     pylab.plot(avgResistants, label = "Resistant Virus Population")
     pylab.title("ResistantVirus simulation")
