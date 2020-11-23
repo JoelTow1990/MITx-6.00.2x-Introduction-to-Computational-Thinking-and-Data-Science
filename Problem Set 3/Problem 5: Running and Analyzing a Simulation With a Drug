@@ -53,7 +53,6 @@ def simulationWithDrug(numViruses, maxPop, maxBirthProb, clearProb, resistances,
 
     totals = [list() for i in range(300)]
     resistants = [list() for i in range(300)]
-    averages = []
     for trial in range(numTrials):
         viruses = [ResistantVirus(maxBirthProb, clearProb, resistances, mutProb) for i in range(numViruses)]
         treated = TreatedPatient(viruses, maxPop)
